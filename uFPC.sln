@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFPC.Site", "uFPC.Site\uFPC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{9228D12C-7E07-47F8-9460-5EFE92FE9854}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.0", "1.0.0", "{3C0D0BDB-8F02-4490-B1F7-2A3F00957ED4}"
+	ProjectSection(SolutionItems) = preProject
+		dist\1.0.0\uFPC_1.0.0.zip = dist\1.0.0\uFPC_1.0.0.zip
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +31,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C0D0BDB-8F02-4490-B1F7-2A3F00957ED4} = {9228D12C-7E07-47F8-9460-5EFE92FE9854}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {762756A1-71DB-4223-B2D5-05B02D10D571}
