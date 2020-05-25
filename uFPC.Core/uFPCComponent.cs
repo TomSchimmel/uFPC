@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using uFPC.Cache;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Events;
@@ -26,7 +27,10 @@ namespace uFPC
 
         private void ContentService_Published(IContentService sender, ContentPublishedEventArgs e)
         {
-            //e.PublishedEntities.
+            foreach(var entity in e.PublishedEntities)
+            {
+                uFPCCache.Create(entity.Id);
+            }
         }
 
         public void Terminate()

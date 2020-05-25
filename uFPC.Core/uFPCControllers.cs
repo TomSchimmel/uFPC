@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Text.RegularExpressions;
+using System.Web.Mvc;
 using uFPC.Attributes;
+using Umbraco.Core.Composing;
 using Umbraco.Web;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
@@ -11,7 +13,8 @@ namespace uFPC.Controllers
     {
         public override ActionResult Index(ContentModel model)
         {
-            return View("~/App_Plugins/uFPC/cache/" + model.Content.GetTemplateAlias() + ".cshtml", model);
+            return View(uFPC.IO.uFPCio.FindView(Current.Services.FileService.GetTemplate(model.Content.GetTemplateAlias())), model);
+            //return View("~/App_Plugins/uFPC/cache/" + model.Content.GetTemplateAlias() + ".cshtml", model);
         }
     }
 

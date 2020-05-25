@@ -10,6 +10,7 @@ using uFPC.Helpers;
 using uFPC.IO;
 using uFPC.Stream;
 using Umbraco.Core.Composing;
+using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 
 namespace uFPC.Cache
@@ -19,40 +20,45 @@ namespace uFPC.Cache
         private static RouteData routeData = new RouteData();
         private static HttpContextWrapper context = new HttpContextWrapper(HttpContext.Current);
 
-        public static void Create(ActionExecutedContext filterContext)
+        public static void Create(int? nodeId = null)
         {
             ControllerContext controllerContext = new ControllerContext(new RequestContext(context, routeData), new FakeController());
             var umbracoHelper = Umbraco.Web.Composing.Current.UmbracoHelper;
-            var node = umbracoHelper.Content(umbracoHelper.AssignedContentItem.Id);
-            var lastEditedDate = node.UpdateDate;
-            var fileService = Current.Services.FileService;
-            var nodeTemplatealias = node.GetTemplateAlias();
-            var nodeTemplate = fileService.GetTemplate(nodeTemplatealias);
-            string templateContent = nodeTemplate.Content;
+            IPublishedContent node = null;
 
-            if (!uFPCio.PathExists(nodeTemplate, lastEditedDate))
+            if (nodeId != null && nodeId > 0)
             {
-                ViewEngines.Engines.Add(new CustomViewEngine());
-
-                if (!routeData.Values.ContainsValue("Fake"))
+                node = umbracoHelper.Content(umbracoHelper.AssignedContentItem.Id);
+            }
+            else
+            {
                 {
-                    routeData.Values.Add("Controller", "Fake");
+                    node = umbracoHelper.Content(umbracoHelper.AssignedContentItem.Id);
                 }
 
-            templateContent = uFPCHelpers.ReplaceMasterLayoutPath(templateContent, nodeTemplate);
+                var lastEditedDate = node.UpdateDate;
+                var fileService = Current.Services.FileService;
+                var nodeTemplatealias = node.GetTemplateAlias();
+                var nodeTemplate = fileService.GetTemplate(nodeTemplatealias);
+                string templateContent = nodeTemplate.Content;
 
-                uFPCio.WriteToCache(templateContent, nodeTemplate, lastEditedDate);
+                if (!uFPCio.PathExists(nodeTemplate, lastEditedDate))
+                {
+                    ViewEngines.Engines.Add(new CustomViewEngine());
 
-                templateContent = uFPCHelpers.GetRazorViewAsString(node, uFPCio.GetRelativePathFromCache(nodeTemplate, lastEditedDate), controllerContext);
+                    if (!routeData.Values.ContainsValue("Fake"))
+                    {
+                        routeData.Values.Add("Controller", "Fake");
+                    }
 
-                uFPCio.WriteToCache(templateContent, nodeTemplate, lastEditedDate);
-            }
+                    templateContent = uFPCHelpers.ReplaceMasterLayoutPath(templateContent, nodeTemplate);
 
-            var response = filterContext.HttpContext.Response;
+                    uFPCio.WriteToCache(templateContent, nodeTemplate, lastEditedDate);
 
-            if (response.ContentType == "text/html")
-            {
-                response.Filter = new CustomStream(filterContext.HttpContext.Response.Filter, nodeTemplate, lastEditedDate);
+                    templateContent = uFPCHelpers.GetRazorViewAsString(node, uFPCio.GetRelativePathFromCache(nodeTemplate, lastEditedDate), controllerContext);
+
+                    uFPCio.WriteToCache(templateContent, nodeTemplate, lastEditedDate);
+                }
             }
         }
     }
