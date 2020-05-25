@@ -242,6 +242,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="uFPC">
+      <HintPath>..\uFPC.Core\bin\uFPC.dll</HintPath>
+    </Reference>
     <Reference Include="Umbraco.Core, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.8.6.1\lib\net472\Umbraco.Core.dll</HintPath>
     </Reference>
