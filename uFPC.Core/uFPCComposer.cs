@@ -11,4 +11,9 @@ namespace uFPC.Composer
             composition.SetDefaultRenderMvcController<uPFCCoreController>();
         }
     }
+
+    public class LogWhenPublishedComposer : ComponentComposer<uFPCComponent>
+    {
+        // nothing needed to be done here!
+    }
 }
