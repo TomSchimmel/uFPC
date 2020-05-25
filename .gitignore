@@ -9,6 +9,9 @@
 **/App_Data/cache/
 **/App_Data/Models/ood.flag
 
+#other
+*/temp.txt
+
 # User-specific files
 *.rsuser
 *.suo
