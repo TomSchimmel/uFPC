@@ -35,7 +35,25 @@ namespace uFPC.IO
         public static string FindView(ITemplate template)
         {
             Regex reg = new Regex(String.Format(@"^{0}_.*.cshtml$", template.Alias));
-            return System.IO.Directory.GetFiles((String.Format(@"{0}\App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml"))).FirstOrDefault(path => reg.IsMatch(path));
+            var files = System.IO.Directory.GetFiles((String.Format(@"{0}\App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml")));
+
+            if (files != null)
+            {
+                return System.IO.Directory.GetFiles((String.Format(@"{0}\App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml"))).FirstOrDefault(path => reg.IsMatch(path));
+            } else
+            {
+                return String.Empty;
+            }
+        }
+
+        public static void RemoveFile(ITemplate template)
+        {
+            var view = FindView(template);
+            
+            if (!String.IsNullOrEmpty(view))
+            {
+                System.IO.Directory.Delete(view);
+            }
         }
     }
 }
