@@ -4,13 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 #Umbraco
-*/uFPC.Site/App_Data/Logs/ 
-*/AppData/[Pp]review/ 
-**/AppData/TEMP/ 
-**/App_Data/NuGetBackup/
-*/uFPC.Site/App_Data/umbraco.config
-*/uFPC.Site/App_Data/cache/
-*/uFPC.Site/App_Data/Models/ood.flag
+*/uFPC.Site/App_Data/
 
 #other
 */temp.txt
