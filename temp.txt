@@ -1,0 +1,11 @@
+TODO:
+[] sync cache folder on umbraco save&publish event
+[] create dashboard
+	o button manual sync
+	o overview cached pages and url's 
+	o 
+[] execute .js files (vuejs / jquery?)
+[] web.config namespaces?
+[] extra log information
+[] DI
+[] 
