@@ -35,7 +35,7 @@ namespace uFPC.IO
         public static string FindView(ITemplate template)
         {
             Regex reg = new Regex(String.Format(@"{0}_.*.cshtml", template.Alias));
-            var files = System.IO.Directory.GetFiles((String.Format(@"{0}\App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml")));
+            var files = System.IO.Directory.GetFiles((String.Format(@"{0}App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml").Replace(@"\\", @"/")));
 
             if (files != null)
             {
