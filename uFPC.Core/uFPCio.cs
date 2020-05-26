@@ -35,11 +35,11 @@ namespace uFPC.IO
         public static string FindView(ITemplate template)
         {
             Regex reg = new Regex(String.Format(@"{0}_.*.cshtml", template.Alias));
-            var files = System.IO.Directory.GetFiles((String.Format(@"{0}App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml").Replace(@"\\", @"/")));
+            var files = System.IO.Directory.GetFiles((String.Format(@"{0}App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml")));
 
             if (files != null)
             {
-                return System.IO.Directory.GetFiles((String.Format(@"{0}\App_plugins\uFPC\cache\", AppDomain.CurrentDomain.BaseDirectory, "*.cshtml"))).FirstOrDefault(path => reg.IsMatch(path));
+                return files.FirstOrDefault(path => reg.IsMatch(path));
             } else
             {
                 return String.Empty;
@@ -52,7 +52,7 @@ namespace uFPC.IO
             
             if (!String.IsNullOrEmpty(view))
             {
-                System.IO.Directory.Delete(view);
+                System.IO.File.Delete(view.Replace(@"\", @"/"));
             }
         }
     }
