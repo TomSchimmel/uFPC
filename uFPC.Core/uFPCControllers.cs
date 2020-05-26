@@ -13,7 +13,7 @@ namespace uFPC.Controllers
     {
         public override ActionResult Index(ContentModel model)
         {
-            return uFPC.IO.uFPCio.FindView(Current.Services.FileService.GetTemplate(model.Content.GetTemplateAlias())).Replace(System.AppDomain.CurrentDomain.BaseDirectory, "~\\");
+            return View(uFPC.IO.uFPCio.FindView(Current.Services.FileService.GetTemplate(model.Content.GetTemplateAlias())).Replace(System.AppDomain.CurrentDomain.BaseDirectory, "~\\"));
             //return View("~/App_Plugins/uFPC/cache/" + model.Content.GetTemplateAlias() + ".cshtml", model);
         }
     }
