@@ -12,8 +12,9 @@ By storing this content in your cache, a page can be built faster.
 The first time the Umbrao application is started, cache pages will be created for each 
 specific page. On the first visit you will immediately 
 notice the speed gains caused by FPC, because all calculations have been performed and 
-saved for the first time. Everytime you make edit to your Umbraco pages the cache will 
-be regenerated.
+saved for the first time. 
+
+Everytime you make edits to your Umbraco pages the cache will be regenerated.
 
 When the page is visited after the data has been cached, the static content of the website 
 is displayed on the page almost immediately. After all, the calculations no longer need to be 
