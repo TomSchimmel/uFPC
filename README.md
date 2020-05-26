@@ -22,6 +22,11 @@ made, because the outcome is cached. This applies to every visitor who visits th
 The page loads super fast with every new visit. This is because the static contact is cached. 
 The page is cached and therefore does not need to be recalculated.
 
+## How to install?
+
+Download the package at Our Umbraco:
+https://our.umbraco.com/packages/developer-tools/ufpc/
+
 --------------------------------
 ### @author: fungybytes
 ### @website: https://fungybytes.com
