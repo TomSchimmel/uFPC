@@ -14,7 +14,7 @@ namespace uFPC.Attributes
 {
     public class uFPCCoreAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             uFPCCache.Create();
         }
