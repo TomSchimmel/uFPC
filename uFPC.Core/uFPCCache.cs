@@ -22,30 +22,26 @@ namespace uFPC.Cache
 
         public static void Create(int? nodeId = null)
         {
-            ControllerContext controllerContext = new ControllerContext(new RequestContext(context, routeData), new FakeController());
-            var umbracoHelper = Umbraco.Web.Composing.Current.UmbracoHelper;
+            uFPCComponent._logger.Info(typeof(String), "UFPC.Cache");
+
             IPublishedContent node = null;
+            var umbracoHelper = Umbraco.Web.Composing.Current.UmbracoHelper;
+            var fileService = Current.Services.FileService;
+            var nodeLastEditedDate = node.UpdateDate;
+            var nodeTemplatealias = node.GetTemplateAlias();
+            var nodeTemplate = fileService.GetTemplate(nodeTemplatealias);
 
             if (nodeId != null && nodeId > 0)
             {
                 node = umbracoHelper.Content(nodeId);    
+                uFPCio.RemoveFile(nodeTemplate);
             }
             else
             {
                 node = umbracoHelper.Content(umbracoHelper.AssignedContentItem.Id);
             }
 
-            var lastEditedDate = node.UpdateDate;
-            var fileService = Current.Services.FileService;
-            var nodeTemplatealias = node.GetTemplateAlias();
-            var nodeTemplate = fileService.GetTemplate(nodeTemplatealias);
-
-            if (nodeId != null && nodeId > 0)
-            {
-                uFPCio.RemoveFile(nodeTemplate);
-            }
-
-            if (!uFPCio.PathExists(nodeTemplate, lastEditedDate))
+            if (!uFPCio.PathExists(nodeTemplate, nodeLastEditedDate))
             {
                 string templateContent = nodeTemplate.Content;
                 ViewEngines.Engines.Add(new CustomViewEngine());
@@ -57,11 +53,12 @@ namespace uFPC.Cache
 
                 templateContent = uFPCHelpers.ReplaceMasterLayoutPath(templateContent, nodeTemplate);
 
-                uFPCio.WriteToCache(templateContent, nodeTemplate, lastEditedDate);
+                uFPCio.WriteToCache(templateContent, nodeTemplate, nodeLastEditedDate);
 
-                templateContent = uFPCHelpers.GetRazorViewAsString(node, uFPCio.GetRelativePathFromCache(nodeTemplate, lastEditedDate), controllerContext);
+                ControllerContext controllerContext = new ControllerContext(new RequestContext(context, routeData), new FakeController());
+                templateContent = uFPCHelpers.GetRazorViewAsString(node, uFPCio.GetRelativePathFromCache(nodeTemplate, nodeLastEditedDate), controllerContext);
 
-                uFPCio.WriteToCache(templateContent, nodeTemplate, lastEditedDate);
+                uFPCio.WriteToCache(templateContent, nodeTemplate, nodeLastEditedDate);
             }
         }
     }

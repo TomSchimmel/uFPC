@@ -98,7 +98,7 @@
     <Compile Include="uFPCCache.cs" />
     <Compile Include="uFPCComponent.cs" />
     <Compile Include="uFPCComposer.cs" />
-    <Compile Include="uFPCCore.cs" />
+    <Compile Include="uFPCViewEngine.cs" />
     <Compile Include="uFPCControllers.cs" />
     <Compile Include="uFPCHelpers.cs" />
     <Compile Include="uFPCio.cs" />

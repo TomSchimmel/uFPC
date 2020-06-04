@@ -6,6 +6,7 @@ using uFPC.Cache;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
 using Umbraco.Core.Events;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Core.Services.Implement;
@@ -14,6 +15,13 @@ namespace uFPC
 {
     public class uFPCComponent : IComponent
     {
+        public static ILogger _logger;
+
+        public uFPCComponent(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public void Initialize()
         {
             ContentService.Published += ContentService_Published;
