@@ -27,11 +27,6 @@ namespace uFPC.IO
             return System.IO.File.Exists(String.Format(@"{0}\App_plugins\uFPC\cache\{1}_{2}.cshtml", AppDomain.CurrentDomain.BaseDirectory, template.Alias, lastEdited.Ticks.ToString()));
         }
 
-        public static DateTime GetLastWriteTime(ITemplate template, DateTime lastEdited)
-        {
-            return System.IO.File.GetLastWriteTime(String.Format(@"{0}\App_plugins\uFPC\cache\{1}_{2}.cshtml", AppDomain.CurrentDomain.BaseDirectory, template.Alias, lastEdited.Ticks.ToString()));
-        }
-
         public static string FindView(ITemplate template)
         {
             Regex reg = new Regex(String.Format(@"{0}_.*.cshtml", template.Alias));
