@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using uFPC.Controllers;
+using uFPC.IO;
 using Umbraco.Core.Models;
 
 namespace uFPC.Helpers
@@ -62,6 +63,10 @@ namespace uFPC.Helpers
 
         public static string InsertViewStartContent(string templateContent, ITemplate nodeTemplate)
         {
+            var viewStartContent = uFPCio.FindViewStartTemplate();
+
+            templateContent = templateContent.Insert(0, viewStartContent);
+
             return templateContent;
         }
 
