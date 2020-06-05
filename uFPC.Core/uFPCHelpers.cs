@@ -33,11 +33,19 @@ namespace uFPC.Helpers
                 alias = equalsRegex.Match(layoutMatch.Value).Value;
             }
 
-            var masterPath = (ViewEngines.Engines.FindView(GetControllerContext(), alias.Replace(".cshtml", "").Replace('"', ' ').Trim(), "").View as RazorView).ViewPath;
-
-            if (layoutMatch.Success)
+            if (!String.IsNullOrEmpty(alias))
             {
-                templateContent = regexLayout.Replace(templateContent, "Layout = " + '"' + masterPath + '"');
+                var view = ViewEngines.Engines.FindView(GetControllerContext(), alias.Replace(".cshtml", "").Replace('"', ' ').Trim(), "");
+
+                if (view != null && view.View != null)
+                {
+                    var masterPath = (view.View as RazorView).ViewPath;
+
+                    if (layoutMatch.Success)
+                    {
+                        templateContent = regexLayout.Replace(templateContent, "Layout = " + '"' + masterPath + '"');
+                    }
+                }
             }
 
             return templateContent;

@@ -43,7 +43,7 @@ namespace uFPC
 
         public void Terminate()
         {
-            throw new NotImplementedException();
+            uFPCComponent._logger.Info(typeof(String), "UFPC.Cache terminated" + HttpContext.Current.AllErrors.First().Message);
         }
     }
 }
