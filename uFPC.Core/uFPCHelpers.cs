@@ -17,37 +17,41 @@ namespace uFPC.Helpers
             var regexLayout = new Regex("Layout\\s*=\\s*.*\"", RegexOptions.IgnoreCase);
             var layoutMatch = regexLayout.Match(templateContent);
 
-            if (layoutMatch.Value.Contains("/"))
+            if (layoutMatch.Success)
             {
-                var forwardSlashRegex = new Regex(@"[^/]+$", RegexOptions.IgnoreCase);
-                alias = forwardSlashRegex.Match(layoutMatch.Value.TrimEnd('/')).Value;
-            }
-            else if (layoutMatch.Value.Contains("\\"))
-            {
-                var backwardSlashRegex = new Regex(@"([^\\]+$)", RegexOptions.IgnoreCase);
-                alias = backwardSlashRegex.Match(Regex.Unescape(layoutMatch.Value.TrimEnd('\\'))).Value;
-            }
-            else
-            {
-                var equalsRegex = new Regex(@"([^=]+$)", RegexOptions.IgnoreCase);
-                alias = equalsRegex.Match(layoutMatch.Value).Value;
-            }
 
-            if (!String.IsNullOrEmpty(alias))
-            {
-                var viewName = alias.Replace(".cshtml", "").Replace('"', ' ').Trim();
-
-                if (!String.IsNullOrEmpty(viewName))
+                if (layoutMatch.Value.Contains("/"))
                 {
-                    var view = ViewEngines.Engines.FindView(GetControllerContext(), viewName, "");
+                    var forwardSlashRegex = new Regex(@"[^/]+$", RegexOptions.IgnoreCase);
+                    alias = forwardSlashRegex.Match(layoutMatch.Value.TrimEnd('/')).Value;
+                }
+                else if (layoutMatch.Value.Contains("\\"))
+                {
+                    var backwardSlashRegex = new Regex(@"([^\\]+$)", RegexOptions.IgnoreCase);
+                    alias = backwardSlashRegex.Match(Regex.Unescape(layoutMatch.Value.TrimEnd('\\'))).Value;
+                }
+                else
+                {
+                    var equalsRegex = new Regex(@"([^=]+$)", RegexOptions.IgnoreCase);
+                    alias = equalsRegex.Match(layoutMatch.Value).Value;
+                }
 
-                    if (view != null && view.View != null)
+                if (!String.IsNullOrEmpty(alias))
+                {
+                    var viewName = alias.Replace(".cshtml", "").Replace('"', ' ').Trim();
+
+                    if (!String.IsNullOrEmpty(viewName))
                     {
-                        var masterPath = (view.View as RazorView).ViewPath;
+                        var view = ViewEngines.Engines.FindView(GetControllerContext(), viewName, "");
 
-                        if (layoutMatch.Success)
+                        if (view != null && view.View != null)
                         {
-                            templateContent = regexLayout.Replace(templateContent, "Layout = " + '"' + masterPath + '"');
+                            var masterPath = (view.View as RazorView).ViewPath;
+
+                            if (layoutMatch.Success)
+                            {
+                                templateContent = regexLayout.Replace(templateContent, "Layout = " + '"' + masterPath + '"');
+                            }
                         }
                     }
                 }
