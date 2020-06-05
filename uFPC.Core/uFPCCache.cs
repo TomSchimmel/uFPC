@@ -27,18 +27,23 @@ namespace uFPC.Cache
             IPublishedContent node = null;
             var umbracoHelper = Umbraco.Web.Composing.Current.UmbracoHelper;
             var fileService = Current.Services.FileService;
+
+            if (nodeId != null && nodeId > 0)
+            {
+                node = umbracoHelper.Content(nodeId);    
+            }
+            else
+            {
+                node = umbracoHelper.Content(umbracoHelper.AssignedContentItem.Id);
+            }
+
             var nodeLastEditedDate = node.UpdateDate;
             var nodeTemplatealias = node.GetTemplateAlias();
             var nodeTemplate = fileService.GetTemplate(nodeTemplatealias);
 
             if (nodeId != null && nodeId > 0)
             {
-                node = umbracoHelper.Content(nodeId);    
                 uFPCio.RemoveFile(nodeTemplate);
-            }
-            else
-            {
-                node = umbracoHelper.Content(umbracoHelper.AssignedContentItem.Id);
             }
 
             if (!uFPCio.PathExists(nodeTemplate, nodeLastEditedDate))
@@ -59,6 +64,23 @@ namespace uFPC.Cache
                 templateContent = uFPCHelpers.GetRazorViewAsString(node, uFPCio.GetRelativePathFromCache(nodeTemplate, nodeLastEditedDate), controllerContext);
 
                 uFPCio.WriteToCache(templateContent, nodeTemplate, nodeLastEditedDate);
+            }
+        }
+
+        public static void Update()
+        {
+            var contentService = Current.Services.ContentService;
+
+            foreach (var parent in contentService.GetRootContent())
+            {
+                long totalRecords = 0;
+                foreach (var node in contentService.GetPagedDescendants(parent.Id, 0, Int32.MaxValue, out totalRecords))
+                {
+                    if (node != null)
+                    {
+                        uFPCCache.Create(node.Id);
+                    }
+                }
             }
         }
     }
