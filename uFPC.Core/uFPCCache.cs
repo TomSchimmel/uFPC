@@ -56,8 +56,8 @@ namespace uFPC.Cache
                     routeData.Values.Add("Controller", "Fake");
                 }
 
-                templateContent = uFPCHelpers.ReplaceMasterLayoutPath(templateContent, nodeTemplate);
                 templateContent = uFPCHelpers.InsertViewStartContent(templateContent, nodeTemplate);
+                templateContent = uFPCHelpers.ReplaceMasterLayoutPath(templateContent, nodeTemplate);
 
                 uFPCio.WriteToCache(templateContent, nodeTemplate, nodeLastEditedDate);
 
