@@ -57,6 +57,7 @@ namespace uFPC.Cache
                 }
 
                 templateContent = uFPCHelpers.ReplaceMasterLayoutPath(templateContent, nodeTemplate);
+                templateContent = uFPCHelpers.InsertViewStartContent(templateContent, nodeTemplate);
 
                 uFPCio.WriteToCache(templateContent, nodeTemplate, nodeLastEditedDate);
 

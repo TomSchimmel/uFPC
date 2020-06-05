@@ -1,4 +1,7 @@
 TODO:
+[] find view web.config and copy to /cache folder
+[] find viewstart.cshtml and copy to /cache folder
+[] replace master layout in viewstart.cshtml
 [] sync cache folder on umbraco save&publish event
 [] create dashboard
 	o button manual sync

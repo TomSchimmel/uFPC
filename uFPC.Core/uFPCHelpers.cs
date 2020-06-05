@@ -56,6 +56,11 @@ namespace uFPC.Helpers
             return templateContent;
         }
 
+        public static string InsertViewStartContent(string templateContent, ITemplate nodeTemplate)
+        {
+            return templateContent;
+        }
+
         public static string GetRazorViewAsString(object model, string filePath, ControllerContext controller)
         {
             StringWriter stringWriter = new StringWriter();
