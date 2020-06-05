@@ -35,15 +35,20 @@ namespace uFPC.Helpers
 
             if (!String.IsNullOrEmpty(alias))
             {
-                var view = ViewEngines.Engines.FindView(GetControllerContext(), alias.Replace(".cshtml", "").Replace('"', ' ').Trim(), "");
+                var viewName = alias.Replace(".cshtml", "").Replace('"', ' ').Trim();
 
-                if (view != null && view.View != null)
+                if (!String.IsNullOrEmpty(viewName))
                 {
-                    var masterPath = (view.View as RazorView).ViewPath;
+                    var view = ViewEngines.Engines.FindView(GetControllerContext(), viewName, "");
 
-                    if (layoutMatch.Success)
+                    if (view != null && view.View != null)
                     {
-                        templateContent = regexLayout.Replace(templateContent, "Layout = " + '"' + masterPath + '"');
+                        var masterPath = (view.View as RazorView).ViewPath;
+
+                        if (layoutMatch.Success)
+                        {
+                            templateContent = regexLayout.Replace(templateContent, "Layout = " + '"' + masterPath + '"');
+                        }
                     }
                 }
             }
