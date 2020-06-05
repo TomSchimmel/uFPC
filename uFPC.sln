@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.0", "1.0.0", "{3C0D0BDB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFPC.Site", "uFPC.Site\uFPC.Site.csproj", "{E85947BE-11E7-4DD4-99DB-0DCE881F165E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1.0", "1.1.0", "{F77283D9-9CE4-42DD-848B-09D4DF0B81A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3C0D0BDB-8F02-4490-B1F7-2A3F00957ED4} = {9228D12C-7E07-47F8-9460-5EFE92FE9854}
+		{F77283D9-9CE4-42DD-848B-09D4DF0B81A9} = {9228D12C-7E07-47F8-9460-5EFE92FE9854}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {762756A1-71DB-4223-B2D5-05B02D10D571}
