@@ -268,6 +268,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\uFPC\uFPCDashboard.css" />
+    <Content Include="App_Plugins\uFPC\uFPCDashboard.html" />
+    <Content Include="App_Plugins\uFPC\uFPCDashboardController.js" />
+    <Content Include="App_Plugins\uFPC\uFPCDashboardService.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -306,6 +310,7 @@
     <Content Include="config\HealthChecks.config" />
     <Content Include="config\ClientDependency.config" />
     <Content Include="config\BackOfficeTours\getting-started.json" />
+    <Content Include="App_Plugins\uFPC\package.manifest" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
