@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<dashBoard xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  
+ <section alias="uFPCBackoffice" xdt:Transform="Remove" xdt:Locator="Match(alias)" />
+
+ <section alias="uFPCBackoffice" xdt:Transform="Insert" xdt:Locator="Match(alias)">
+    <areas>
+      <area>developer</area>
+    </areas>
+    <tab caption="uFPC BackOffice">
+      <control>/App_Plugins/uFPC/uFPCDashboard.html</control>
+    </tab>
+  </section>
+
+</dashBoard>

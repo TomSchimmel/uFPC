@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFPC.Site", "uFPC.Site\uFPC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1.0", "1.1.0", "{F77283D9-9CE4-42DD-848B-09D4DF0B81A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uFPC.Dashboard", "uFPC.Dashboard\uFPC.Dashboard.csproj", "{4E05F6ED-6D41-4D4D-A64D-59D99B647926}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +29,12 @@ Global
 		{9AB1BD88-8DD5-4164-AF3C-E33D86C838AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AB1BD88-8DD5-4164-AF3C-E33D86C838AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E85947BE-11E7-4DD4-99DB-0DCE881F165E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E85947BE-11E7-4DD4-99DB-0DCE881F165E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E85947BE-11E7-4DD4-99DB-0DCE881F165E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E85947BE-11E7-4DD4-99DB-0DCE881F165E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E05F6ED-6D41-4D4D-A64D-59D99B647926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E05F6ED-6D41-4D4D-A64D-59D99B647926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E05F6ED-6D41-4D4D-A64D-59D99B647926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E05F6ED-6D41-4D4D-A64D-59D99B647926}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
